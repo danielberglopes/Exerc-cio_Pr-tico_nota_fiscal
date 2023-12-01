@@ -6,9 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="notaFiscal.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
 </head>
 
@@ -30,14 +35,14 @@
                <!-- Adicione a imagem do ícone da nota fiscal -->
            <img class="navbar-brand text-white" src="img\taxa.png" alt="Ícone Nota Fiscal">
    
-
+           <button type="button" class="btn btn-outline-danger  btn-lg mt-3"  onclick="downloadPDF()" >Download Pdf</button>
             <button class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#exampleModal">
                 <span class="icon">+</span> Adicionar Novo
             </button>
         </div>
 
-        <div class="container mt-3" >
-            <table class="tabela" style="width: 100%;" >
+        <div class="container mt-3 Content" id="tableContainer"  >
+            <table id="myTable" class="tabela" style="width: 120%; display: none;" >
                 <tr>
                     <td style="width: 40%; height: 100px;" rowspan="3">
     
@@ -116,8 +121,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3" style="height: 20%">
-                        <table style="width: 100%;">
+                    <td colspan="3" style="height: 20%" >
+                        <table style="width: 100%;" class="list" id="employeeList">
                             <tr>
                                 <td style="width: 50%; text-align: center;" colspan="2">
                                     <span class="sub-titulo">TOMADOR DE SERVIÇO</span>
@@ -125,7 +130,7 @@
                             </tr>
                             <tr>
                                 <td class="campo_titulo" style="width: 50%; padding-left: 5px;">
-                                    Nome/Razão Social: <span class="campo_valor" id="dest_receiver_name">[]</span>
+                                    Nome/Razão Social: <span class="campo_valor" id="dest_receiver_name">[nome_cliente]</span>
                                     <br />
                                     CNPJ/CPF: <span class="campo_valor" id="dest_nu_cnpj_cpf">[nl_client_cnpj_cpf]</span>
                                     <br />
@@ -283,7 +288,7 @@
         </div>
         <div class="modal-body">
        
-            <form class="row g-3"  id="formulario" >
+            <form class="row g-3"  >
                 <div class="col-md-6">
                   <label for="nome_cliente" class="form-label">Nome Cliente:</label>
                   <input type="text" class="form-control" id="nome_cliente" name="nome_cliente" placeholder="Nome Cliente">
@@ -335,61 +340,33 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    
+    </script>
 
-        <script>
+    <script>
+        function salvarFormulario() {
+            var table = document.getElementById("myTable");
+            table.style.display = (table.style.display === 'none' || table.style.display === '') ? 'table' : 'none';
+        }
+    </script>
 
-            function salvarFormulario(){
-              //aqui vamos Obter os valores dos campos
-              var nome_cliente = document.getElementById('nome_cliente').value;
-              var cpf = document.getElementById('cpf').value;
-              var Valor_do_serviço_prestado  = document.getElementById('Valor_do_serviço_prestado').value;
-              var endereco = document.getElementById('endereco').value;
-              var Codigo_de_Verificão = document.getElementById('Codigo_de_Verificão').value;
-        
-              var municipio = document.getElementById('municipio').value;
-              var atividade = document.getElementById('atividade').value;
-              var fone = document.getElementById('fone').value;
-              var data = document.getElementById('data').value;
-              var dados = { 
-                nome_cliente: nome_cliente,
-                cpf:cpf,
-                Codigo_de_Verificão:Codigo_de_Verificão,
-                Valor_do_serviço_prestado: Valor_do_serviço_prestado,
-                endereco: endereco,
-                municipio:municipio,
-                atividade:atividade,
-                fone:fone,
-                data:data
-            
-            };
-            var contatosArray = JSON.parse(localStorage.getItem('contatosArray')) || [];
-
-
-            contatosArray.push(dados);
-            localStorage.setItem(' contatosArray', JSON.stringify(contatosArray));
-              alert('informmacoes salvas com sucesso!')
-
-              console.log(dados);
-              console.log(contatosArray);
-
-              
-            }
-
-            function mostraValor(dados){
-                // Selecione o elemento pelo ID
-                var destReceiverNameElement = document.getElementById('dest_receiver_name');
-            
-                // Verifique se o elemento foi encontrado
-                if (destReceiverNameElement) {
-                    // Preencha o valor do elemento com o nome do cliente
-                    destReceiverNameElement.textContent = dados.nome_cliente;
-                } else {
-                    console.error('Elemento não encontrado com o ID dest_receiver_name');
-                }
-            }
-            
-        </script>
+    <script>
+        function downloadPDF() {
+      const item = document.querySelector(".Content");
+    
+      var opt = {
+        margin: 2,
+        filename: "myfile.pdf",
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+      };
+    
+      html2pdf().set(opt).from(item).save();
+    }
+      </script>
+    
+    
 </body>
 
 </html>
