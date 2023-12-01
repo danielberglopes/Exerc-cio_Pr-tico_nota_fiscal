@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="notaFiscal.css">
 
 </head>
 
@@ -35,36 +36,240 @@
             </button>
         </div>
 
-        <div class="container mt-3">
-            <table class="table table-bordered  tabelaPrincipal">
-                <br><br>
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="row">Numero Nota</th>
-                        <th scope="col">Nota</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>1</th>
-                        <td>2424</td>
-                        <td>442</td>
-                        <td>555</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr>
-                        <th>2</th>
-                        <td>2424</td>
-                        <td>245</td>
-                        <td>6434</td>
-                        <td>@mdo</td>
-                    </tr>
-                  
-                </tbody>
+        <div class="container mt-3" >
+            <table class="tabela" style="width: 100%;" >
+                <tr>
+                    <td style="width: 40%; height: 100px;" rowspan="3">
+    
+                        <table style="width: 100%; height: 108px;">
+                            <tr>
+                                <td style="width: 33%; vertical-align: middle;">
+                                    <img class="client_logo" width="100" height="100" style="vertical-align: middle" src="img\logo.jpg" />
+                                </td>
+                                <td style="vertical-align: middle; padding: 5px;">
+                                    <p class="sub-titulo">
+                                        <span id="emit_cab_ds_issuer_name">InovaTech Solutions</span>
+                                    </p>
+                                  
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+    
+                    </td>
+                    <td style="width: 80%; height: 100px; text-align: center; vertical-align: middle;" rowspan="3">
+                        <span class="sub-titulo" style="font-size: large;">Nota Fiscal Eletrônica de serviços Prestados</span>
+                    </td>
+                    <td>
+                        <dl>
+                            <dt>Número da Nota</dt>
+                            <dd id="dadosnfe_nu_invoice">[nl_invoice]</dd>
+                        </dl>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <dl>
+                            <dt>Data e Hora de Emissão</dt>
+                            <dd id="dadosnfe_dt_invoice_issue">[dt_invoice_issue]</dd>
+                        </dl>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <dl>
+                            <dt>Código de Verificão</dt>
+                            <dd id="dadosnfe_ds_protocol">[ds_protocol]</dd>
+                        </dl>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="height: 20%">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 50%; text-align: center;" colspan="2">
+                                    <span class="sub-titulo">PRESTADOR DE SERVIÇOS</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo_titulo" style="width: 50%; padding-left: 5px">
+                                    CNPJ/CPF: <span id="emit_nu_cnpj_cpf" class="campo_valor">[858.244.444-01]</span>
+                                    <br />
+                                    Nome/Razão Social: <span class="campo_valor" id="emit_corp_ds_issuer_name">[Prestador para Testes de NFT]</span>
+                                    <br />
+                                    Endereço: <span id="emit_ds_addres" class="campo_valor">[]</span>,
+                                    <span id="emit_ds_neighborhood" class="campo_valor">[Rua raimundo pacheo]</span>
+                                    CEP: <span id="emit_nu_cep" class="campo_valor">[61944-430]</span>
+                                    <br />
+                                    Município: <span class="campo_valor" id="emit_corp_ds_city_name">[Fortaleza]</span>
+                                </td>
+                                <td class="campo_titulo" style="width: 50%; padding-left: 5px;">
+                                    Inscrição Municipal: <span class="campo_valor" id="emit_nu_im">[489347459208299]</span>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    UF: <span class="campo_valor" id="emit_corp_nfe_ds_uf">[CE]</span>
+                                </td>
+                            </tr>
+                        </table>
+    
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="height: 20%">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 50%; text-align: center;" colspan="2">
+                                    <span class="sub-titulo">TOMADOR DE SERVIÇO</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo_titulo" style="width: 50%; padding-left: 5px;">
+                                    Nome/Razão Social: <span class="campo_valor" id="dest_receiver_name">[]</span>
+                                    <br />
+                                    CNPJ/CPF: <span class="campo_valor" id="dest_nu_cnpj_cpf">[nl_client_cnpj_cpf]</span>
+                                    <br />
+                                    Endereço: <span id="dest_ds_address" class="campo_valor">[ds_client_address]</span>
+                                    <span id="dest_ds_neighborhood" class="campo_valor">[ds_client_neighborhood]</span>
+                                    CEP: <span id="dest_nu_cep" class="campo_valor">[nu_client_cep]</span>
+                                    <br />
+    
+                                    Município: <span class="campo_valor" id="dest_ds_city_name">[ds_client_city_name]</span>&nbsp;&nbsp;&nbsp;
+                                    UF: <span class="campo_valor" id="dest_ds_uf">[ds_client_uf]</span>
+                                </td>
+                                <td class="campo_titulo" style="width: 50%; padding-left: 5px;">
+                                    Inscrição Municipal: <span class="campo_valor" id="dest_nu_im">[nl_client_im]</span>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    E-Mail: <span class="campo_valor" id="dest_ds_email">[ds_client_email]</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="height: 190px;">
+                        <table style="width: 100%; height: 100%;">
+                            <tr>
+                                <td style="text-align: center; width: 100%; height: 1px;" colspan="2">
+                                    <span class="sub-titulo">DISCRIMINAÇÃO DOS SERVIÇOS</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo_titulo" style="width: 50%; padding-left: 5px; vertical-align: top;">
+                                    [services]
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align: center;">
+                        <span class="sub-titulo">TOTAL DA NOTA = R$ <span id="TOTSERV">[orderTotal]</span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <table style="width: 100%; height: 100%;">
+                            <tr>
+                                <td style="border-right: 1px solid #000;">
+                                    <dl>
+                                        <dt>COFINS</dt>
+                                        <dd style="text-align: right;">R$ <span id="COFINS">***</span></dd>
+                                    </dl>
+                                </td>
+                                <td style="border-right: 1px solid #000;">
+                                    <dl>
+                                        <dt>CSLL</dt>
+                                        <dd style="text-align: right;">R$ <span id="CSLL">***</span></dd>
+                                    </dl>
+                                </td>
+                                <td style="border-right: 1px solid #000;">
+                                    <dl>
+                                        <dt>INSS</dt>
+                                        <dd style="text-align: right;">R$ <span id="INSS">***</span></dd>
+                                    </dl>
+                                </td>
+                                <td style="border-right: 1px solid #000;">
+                                    <dl>
+                                        <dt>IRPJ</dt>
+                                        <dd style="text-align: right;">R$ <span id="IRPJ">***</span></dd>
+                                    </dl>
+                                </td>
+                                <td>
+                                    <dl>
+                                        <dt>PIS</dt>
+                                        <dd style="text-align: right;">R$ <span id="PIS">***</span></dd>
+                                    </dl>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <span class="campo_titulo">Código do Serviço: [serviceCode]</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <table style="width: 100%; height: 100%;">
+                            <tr>
+                                <td style="border-right: 1px solid #000;">
+                                    <dl>
+                                        <dt>Valor Total das Deduções (R$)</dt>
+                                        <dd style="text-align: right;">***</dd>
+                                    </dl>
+                                </td>
+                                <td style="border-right: 1px solid #000;">
+                                    <dl>
+                                        <dt>Base de Cálculo (R$)</dt>
+                                        <dd style="text-align: right;" id="ISS_Bs">***</dd>
+                                    </dl>
+                                </td>
+                                <td style="border-right: 1px solid #000;">
+                                    <dl>
+                                        <dt>Alíquota (%)</dt>
+                                        <dd style="text-align: right;" id="ISS_Aliq">[vl_issqn_aliq]</dd>
+                                    </dl>
+                                </td>
+                                <td style="border-right: 1px solid #000;">
+                                    <dl>
+                                        <dt>Valor do ISS (R$)</dt>
+                                        <dd style="text-align: right;" id="ISS">[vl_issqn]</dd>
+                                    </dl>
+                                </td>
+                                <td>
+                                    <dl>
+                                        <dt>Crédito p/ Abatimento do IPTU</dt>
+                                        <dd style="text-align: right;">***</dd>
+                                    </dl>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="max-width: 400px;">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="text-align: center; width: 100%; height: 1px;" colspan="2">
+                                    <span class="sub-titulo">OUTRAS INFORMAÇÕES</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campo_titulo"
+                                    style="width: 50%; padding-left: 5px; vertical-align: top;">
+                                    <span class="campo_valor" id="dadosnfe_ds_additional_information">[ds_additional_information]</span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
             </table>
+    
+            
         </div>
     </div>
 
@@ -77,48 +282,51 @@
     
         </div>
         <div class="modal-body">
-        
-            <form class="row g-3"   >
+       
+            <form class="row g-3"  id="formulario" >
                 <div class="col-md-6">
-                  <label for="inputEmail4" class="form-label">Nome Cliente:</label>
-                  <input type="email" class="form-control" id="inputEmail4" placeholder="Nome Cliente">
+                  <label for="nome_cliente" class="form-label">Nome Cliente:</label>
+                  <input type="text" class="form-control" id="nome_cliente" name="nome_cliente" placeholder="Nome Cliente">
                 </div>
                 <div class="col-md-6">
-                  <label for="inputPassword4" class="form-label">CPF / CNPJ:</label>
-                  <input type="password" class="form-control" id="inputPassword4" placeholder="CPF / CNPJ">
+                  <label for="cpf" class="form-label">CPF / CNPJ:</label>
+                  <input type="text" class="form-control" id="cpf" name="cpf" placeholder="CPF / CNPJ">
                 </div>
                 <div class="col-md-6">
-                  <label for="inputAddress" class="form-label">Valor do serviço prestado:</label>
-                  <input type="text" class="form-control" id="inputAddress" placeholder="Valor do serviço prestado">
+                  <label for="Valor_do_serviço_prestado" class="form-label">Valor do serviço prestado:</label>
+                  <input type="text" class="form-control" id="Valor_do_serviço_prestado" name="Valor_do_serviço_prestado" placeholder="Valor do serviço prestado">
                 </div>
                 <div class="col-md-6">
-                  <label for="inputAddress2" class="form-label">Endereço:</label>
-                  <input type="text" class="form-control" id="inputAddress2" placeholder="Endereço">
+                  <label for="endereco" class="form-label">Endereço:</label>
+                  <input type="text" class="form-control" id="endereco" name="endereco"  placeholder="Endereço">
                 </div>
                 <div class="col-md-6">
-                  <label for="inputCity" class="form-label">Municipio:</label>
-                  <input type="text" class="form-control" id="inputCity" placeholder="Municipio">
+                  <label for="municipio" class="form-label">Municipio:</label>
+                  <input type="text" class="form-control" id="municipio" name="municipio" placeholder="Municipio">
                 </div>
                 <div class="col-md-6">
-                    <label for="inputZip" class="form-label">Atividade:</label>
-                    <input type="text" class="form-control" id="inputZip" placeholder="Atividade">
+                    <label for="atividade" class="form-label">Atividade:</label>
+                    <input type="text" class="form-control" id="atividade" name="atividade" placeholder="Atividade">
                   </div>
                 <div class="col-md-6">
-                  <label for="inputZip" class="form-label">Fone:</label>
-                  <input type="text" class="form-control" id="inputZip" placeholder="Fone">
+                  <label for="fone" class="form-label">Fone:</label>
+                  <input type="text" class="form-control" id="fone" name="fone" placeholder="Fone">
                 </div>
                 <div class="col-md-6">
-                    <label for="inputZip" class="form-label">Data:</label>
-                    <input type="text" class="form-control" id="inputZip" placeholder="Data">
+                    <label for="data" class="form-label">Data:</label>
+                    <input type="text" class="form-control" id="data" name="data" placeholder="Data">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="Codigo_de_Verificão" class="form-label">Codigo de Verificão:</label>
+                    <input type="text" class="form-control" id="Codigo_de_Verificão" name="Codigo_de_Verificão" placeholder="Numero Da Nota">
                   </div>
               
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <button class="btn btn-danger me-md-2" type="#">Cancelar nota</button>
-                    <button class="btn btn-success"  type="submit">Finalizar nota</button>
+                  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-danger me-md-2" type="submit">Cancelar nota</button>
+                    <button class="btn btn-success"  type="button" data-bs-dismiss="modal"  onclick="salvarFormulario()">Finalizar nota</button>
                   </div>
               </form>
-
-
         </div>
       
       </div>
@@ -128,6 +336,60 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
+        <script>
+
+            function salvarFormulario(){
+              //aqui vamos Obter os valores dos campos
+              var nome_cliente = document.getElementById('nome_cliente').value;
+              var cpf = document.getElementById('cpf').value;
+              var Valor_do_serviço_prestado  = document.getElementById('Valor_do_serviço_prestado').value;
+              var endereco = document.getElementById('endereco').value;
+              var Codigo_de_Verificão = document.getElementById('Codigo_de_Verificão').value;
+        
+              var municipio = document.getElementById('municipio').value;
+              var atividade = document.getElementById('atividade').value;
+              var fone = document.getElementById('fone').value;
+              var data = document.getElementById('data').value;
+              var dados = { 
+                nome_cliente: nome_cliente,
+                cpf:cpf,
+                Codigo_de_Verificão:Codigo_de_Verificão,
+                Valor_do_serviço_prestado: Valor_do_serviço_prestado,
+                endereco: endereco,
+                municipio:municipio,
+                atividade:atividade,
+                fone:fone,
+                data:data
+            
+            };
+            var contatosArray = JSON.parse(localStorage.getItem('contatosArray')) || [];
+
+
+            contatosArray.push(dados);
+            localStorage.setItem(' contatosArray', JSON.stringify(contatosArray));
+              alert('informmacoes salvas com sucesso!')
+
+              console.log(dados);
+              console.log(contatosArray);
+
+              
+            }
+
+            function mostraValor(dados){
+                // Selecione o elemento pelo ID
+                var destReceiverNameElement = document.getElementById('dest_receiver_name');
+            
+                // Verifique se o elemento foi encontrado
+                if (destReceiverNameElement) {
+                    // Preencha o valor do elemento com o nome do cliente
+                    destReceiverNameElement.textContent = dados.nome_cliente;
+                } else {
+                    console.error('Elemento não encontrado com o ID dest_receiver_name');
+                }
+            }
+            
+        </script>
 </body>
 
 </html>
